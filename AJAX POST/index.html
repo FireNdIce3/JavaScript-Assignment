@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+
+    <div class="container">
+
+        <label for="email">Email</label> <br>
+        <input type="text" id="email" name="email">
+        <br>
+        <label for="password">Password</label> <br>
+        <input type="password" id="password" name="password"
+            onkeydown="if (event.keyCode == 13) document.getElementById('btn').click()">
+        <br> <br>
+        <button id="btn" onclick="call()">Submit</button>
+        <br>
+
+        <div id="tkn" style="color: white;"></div>
+    </div>
+</form>
+
+<p id="responses"></p>
+</body>
+<script>
+        
+        function call() {
+            let postobj = {
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value
+            }
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('POST', "https://reqres.in/api/login", true)
+            xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+            xhttp.send(JSON.stringify(postobj))//converting the object into string 
+            document.getElementById('tkn').innerHTML = "Working...."
+            xhttp.onload = function () {
+                console.log(JSON.parse(this.response).token)
+                document.getElementById("tkn").innerHTML = ""
+                if (JSON.parse(this.response).token === undefined){
+                    alert("Wrong Password.")
+                }
+               else{ alert("Your Token is " + JSON.parse(this.response).token)
+            }
+        }
+        }
+</script>
+</html>

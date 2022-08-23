@@ -1,0 +1,14 @@
+.body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.abc{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+.abc input{
+    width: fit-content;
+}
+.abc button{
+    width: fit-content;
+}
